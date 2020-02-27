@@ -15,6 +15,10 @@ def run_game():
     # a cada passagem pelo laço.
     pygame.display.set_caption("Alien Invasion")
 
+    # Define a cor de fundo
+    bg_color = (230, 230, 230)
+    # As cores no Pygame são especificadas como cores RGB
+
     # Inicia o laço principal do jogo
     while True:
     # O jogo é controlado por uma laço 'while' que contém um laço de 
@@ -25,11 +29,14 @@ def run_game():
     # para ouvir um evento e executar uma tarefa apropriada de acordo 
     # com o tipo de evento ocorrido. O laço 'for' abaixo é um laço
     # de eventos.
-    
+
         # Observa eventos de teclado e de mouse
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
+        # Redesenha a tela a cada passagem pelo laço
+        screen.fill(bg_color)
 
         # Deixa a tela mais recente visível
         pygame.display.flip()
