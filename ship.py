@@ -2,9 +2,10 @@ import pygame
 
 class Ship():
 
-    def __init__(self, screen):
+    def __init__(self, ai_settings, screen):
         """ Inicializa a espaçonave e define sua posição inicial. """
         self.screen = screen
+        self.ai_settings = ai_settings
 
         # Carrega a imagem da espaçonave e obtém seu rect
         self.image = pygame.image.load('images/ship.bmp')
@@ -15,24 +16,33 @@ class Ship():
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
 
+        # Armazena um valor decimal para o centro da espaçonave
+        self.center = float(self.rect.centerx)
+        # Usamos valores decimais para a configuração da velocidade para 
+        # que possamos ter um controle mais preciso da mesma quando
+        # aumentarmos o ritmo do jogo. No entanto, os atributos de retângulo
+        # como 'centerx' armazenam apenas valores inteiros, portanto 
+        # precisamos fazer algumas modificações.
+
         # Flags de movimento
         self.moving_right = False
         self.moving_left = False
 
-
     def update(self):
         """ Atualiza a posição da espaçonave de acordo com as flags de movimento."""
+        # Atualiza o valor do centro da espaçonave, e não o retângulo
         if self.moving_right:
-            self.rect.centerx += 1   
+            self.center += self.ai_settings.ship_speed_factor
+            # self.rect.centerx += 1   
         if self.moving_left:
-            self.rect.centerx -= 1
-        # Usamos 'if' em vez de utilizar 'elif' para permitir que o valor rect.centerx
-        # seja incrementado e decrementado se as duas teclas forem mantidas pressionadas.
-        # Isso resulta na espaçonave parada. Se usássemos 'elif' para o movimento à
-        # esquerda, a seta para a direita sempre teria prioridade. Fazer isso dessa 
-        # maneira deixa os movimentos mais precisos ao alternarmos o movimento da 
-        # esquerda para a direita, quando o jogador poderia momentaneamente manter
-        # as duas teclas pressionadas.
+            self.center -= self.ai_settings.ship_speed_factor
+            # self.rect.centerx -= 1
+
+        # Atualiza o objeto rect de acordo com self.center
+        self.rect.centerx = self.center
+        # Somente a parte inteira de self.center será armazenada em
+        # self.rect.centerx, mas isso não é problema para exibir a 
+        # espaçonave
 
     def blitme(self):
         """ Desenha a espaçonave em sua posição atual. """

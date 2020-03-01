@@ -11,9 +11,6 @@ def check_events(ship):
                 ship.moving_right = True
             elif event.key == pygame.K_LEFT:
                 ship.moving_left = True
-        # Podemos usar blocos 'elif' nesse caso, pois cada evento está 
-        # associado a apenas uma tecla. Se o jogador pressionar as duas 
-        # teclas ao mesmo tempo, dois eventos diferentes serão detectados.
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
                 ship.moving_right = False
