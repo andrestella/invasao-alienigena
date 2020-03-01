@@ -18,12 +18,6 @@ def run_game():
     # Inicia o laço principal do jogo
     while True:
         gf.check_events()
-
-        # Redesenha a tela a cada passagem pelo laço
-        screen.fill(ai_settings.bg_color)
-        ship.blitme()
-
-        # Deixa a tela mais recente visível
-        pygame.display.flip()
+        gf.update_screen(ai_settings, screen, ship)
 
 run_game()
