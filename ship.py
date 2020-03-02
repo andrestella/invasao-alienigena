@@ -18,11 +18,6 @@ class Ship():
 
         # Armazena um valor decimal para o centro da espaçonave
         self.center = float(self.rect.centerx)
-        # Usamos valores decimais para a configuração da velocidade para 
-        # que possamos ter um controle mais preciso da mesma quando
-        # aumentarmos o ritmo do jogo. No entanto, os atributos de retângulo
-        # como 'centerx' armazenam apenas valores inteiros, portanto 
-        # precisamos fazer algumas modificações.
 
         # Flags de movimento
         self.moving_right = False
@@ -31,18 +26,15 @@ class Ship():
     def update(self):
         """ Atualiza a posição da espaçonave de acordo com as flags de movimento."""
         # Atualiza o valor do centro da espaçonave, e não o retângulo
-        if self.moving_right:
+        if self.moving_right and self.rect.right < self.screen_rect.right:
             self.center += self.ai_settings.ship_speed_factor
             # self.rect.centerx += 1   
-        if self.moving_left:
+        if self.moving_left and self.rect.left > 0:
             self.center -= self.ai_settings.ship_speed_factor
             # self.rect.centerx -= 1
 
         # Atualiza o objeto rect de acordo com self.center
         self.rect.centerx = self.center
-        # Somente a parte inteira de self.center será armazenada em
-        # self.rect.centerx, mas isso não é problema para exibir a 
-        # espaçonave
 
     def blitme(self):
         """ Desenha a espaçonave em sua posição atual. """
