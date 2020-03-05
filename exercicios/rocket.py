@@ -22,6 +22,10 @@ class Rocket():
             self.rect.centerx += 1   
         if self.moving_left and self.rect.left > 0:
             self.rect.centerx -= 1
+        if self.moving_top and self.rect.top > self.screen_rect.top:
+            self.rect.centery -= 1
+        if self.moving_bottom and self.rect.bottom < self.screen_rect.bottom:
+            self.rect.centery += 1
 
 
 def check_keydown_events(event, rocket):
@@ -29,12 +33,20 @@ def check_keydown_events(event, rocket):
         rocket.moving_right = True
     elif event.key == pygame.K_LEFT:
         rocket.moving_left = True
+    elif event.key == pygame.K_UP:
+        rocket.moving_top = True
+    elif event.key == pygame.K_DOWN:
+        rocket.moving_bottom = True
 
 def check_keyup_events(event, rocket):
     if event.key == pygame.K_RIGHT:
         rocket.moving_right = False
     elif event.key == pygame.K_LEFT:
         rocket.moving_left = False
+    elif event.key == pygame.K_UP:
+        rocket.moving_top = False
+    elif event.key == pygame.K_DOWN:
+        rocket.moving_bottom = False
 
 def check_events(rocket):
     for event in pygame.event.get():
