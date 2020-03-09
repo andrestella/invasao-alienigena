@@ -23,7 +23,8 @@ def run_game():
     while True:
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
-        bullets.update()
+        bullets.update() # quando chamamos update() em um grupo, ele
+        # chamará update() para cada sprite do grupos
         gf.update_screen(ai_settings, screen, ship, bullets)
 
 run_game()
