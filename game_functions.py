@@ -39,6 +39,9 @@ def update_screen(ai_settings, screen, ship, alien, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
+    alien.blitme() # desenhamos o alienígena na tela depois que a espaçonave
+    # e os projéteis foram desenhados para que os alienígenas estejam na
+    # camada superior da tela
 
     # Deixa a tela mais recente visível
     pygame.display.flip()
