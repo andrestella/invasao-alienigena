@@ -25,6 +25,14 @@ def run_game():
         ship.update()
         bullets.update() # quando chamamos update() em um grupo, ele
         # chamará update() para cada sprite do grupos
+
+        # Livra-se dos projéteis que desapareceram
+        for bullet in bullets.copy(): # não devemos remover itens de
+        # uma lista ou de um grupo em um laço 'for', portanto precisamos
+        # usar uma cópia do grupo no laço
+            if bullet.rect.bottom <= 0:
+                bullets.remove(bullet)
+
         gf.update_screen(ai_settings, screen, ship, bullets)
 
 run_game()
