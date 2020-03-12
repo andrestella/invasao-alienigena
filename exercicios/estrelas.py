@@ -1,5 +1,6 @@
 import pygame
 import sys
+from random import randint
 
 class Star():
     def __init__(self, screen):
@@ -27,9 +28,13 @@ def desenhar_estrelas():
     for row_number in range(number_rows):
         for star_number in range(number_stars_x):
             star = Star(screen)
-            star.x = star.rect_width + 2 * star.rect_width * star_number
-            star.rect.x = star.x
-            star.rect.y = star.rect_height + 2 * star.rect_height * row_number
+            # star.x = star.rect_width + 2 * star.rect_width * star_number
+            # star.rect.x = star.x
+            # star.rect.y = star.rect_height + 2 * star.rect_height * row_number
+            random_number = randint(-10, 1210) # obtendo um número aleatório
+            star.rect.x = random_number
+            random_number = randint(-10, 610) # obtendo um número aleatório
+            star.rect.y = random_number
             screen.blit(star.image, star.rect)
 
     while True:
