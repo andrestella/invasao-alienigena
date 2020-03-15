@@ -56,6 +56,10 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
     # usar uma cópia do grupo no laço
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+
+def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+    """ Responde a colisões entre projéteis e alienígenas. """
     # Verifica se algum projétil atingiu os alienígenas
     # Em caso afirmativo, livra-se do projétil e do alienígena
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
