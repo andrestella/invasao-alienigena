@@ -45,7 +45,7 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     # Deixa a tela mais recente visível
     pygame.display.flip()
 
-def update_bullets(aliens, bullets):
+def update_bullets(ai_settings, screen, ship, aliens, bullets):
     """ Atualiza a posição dos projéteis e se livra dos projéteis antigos. """
     # Atualiza a posição dos projéteis
     bullets.update() # quando chamamos update() em um grupo, ele
@@ -62,6 +62,10 @@ def update_bullets(aliens, bullets):
     # O método 'sprite.groupcollide()' compara o 'rect' de cada projétil 
     # com o 'rect' de cada alienígena e devolve um dicionário contendo os
     # projéteis e os alienígenas que colidiram
+    if len(aliens) == 0:
+        # Destrói os projéteis existentes e cria uma nova frota
+        bullets.empty()
+        create_fleet(ai_settings, screen, ship, aliens)
 
 def fire_bullet(ai_settings, screen, ship, bullets):
     """ Dispara um projétil se o limite ainda não foi alcançado. """
