@@ -126,10 +126,20 @@ def change_fleet_direction(ai_settings, aliens):
         alien.rect.y += ai_settings.fleet_drop_speed
     ai_settings.fleet_direction *= -1
 
-def update_aliens(ai_settings, aliens):
+def update_aliens(ai_settings, ship, aliens):
     """ 
     Verifica se a frota está em uma das bordas e então atualiza
     as posições de todos os alienígenas da frota.
     """
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
+
+    # Verifica se houve colisões entre alienígenas e a espaçonave
+    if pygame.sprite.spritecollideany(ship, aliens):
+    # O método 'spritecollideany()' aceita dois argumentos: um sprite e
+    # um grupo. O método verifica se algum membro do grupo colidiu com o
+    # sprite e para de percorrer o grupo assim que encontrar um membro
+    # que tenha colidido com o sprite. Se nenhuma colisão ocorrer, o método
+    # devolve 'None'. Se ocorrer colisão, o método devolve o elemento do
+    # grupo que colidiu com o sprite.
+        print("Ship hit!!!")
